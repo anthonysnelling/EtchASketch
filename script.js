@@ -1,18 +1,42 @@
-let gridVal = 256;
+const resetButton = document.querySelector("#resetButton");
+const mainContainer = document.querySelector("#mainContainer");
+let gridVal = 16 ** 2;
+
+resetButton.addEventListener("click", reset);
+resetButton.addEventListener("click", resize);
 
 setGrid(gridVal);
 
- function setGrid(gridSize){ 
-    for (let i = 0; i < gridVal; i++) {
-        let divElem = document.createElement("div");
-        divElem.classList.add("gridBlocks")
-        mainContainer.appendChild(divElem);
-    } 
+function setGrid(gridSize) {
+  for (let i = 0; i < gridVal; i++) {
+    let divElem = document.createElement("div");
+    divElem.classList.add("gridBlocks");
+    mainContainer.appendChild(divElem);
+  }
 }
 
-    // TODO: add button function that resets the grid 
-    //  changes gridVal, calculates the number of divs to make, and calls setGrid(gridVal).
-    function reset(){
-
+function reset() {
+  let divNum = document.getElementsByClassName("gridBlocks").length;
+  let container = document.getElementById("mainContainer");
+  if (container.hasChildNodes()) {
+    for (let i = 0; i < divNum; i++) {
+      container.removeChild(container.childNodes[i]);
+      for (let j = 0; j < divNum; j++) {
+        container.removeChild(container.childNodes[i]);
+      }
     }
+  }
+}
 
+function resize() {
+  gridVal = prompt("enter grid size");
+  mainContainer.style.gridTemplateColumns = `repeat(${gridVal}, 1fr)`;
+  gridVal = gridVal ** 2;
+
+  setGrid(gridVal);
+}
+
+// TODO: function that changes background color of div when you hover over it
+// function colorGrid() {
+//   let x = document.getElementsByClassName("gridBlocks");
+// }
