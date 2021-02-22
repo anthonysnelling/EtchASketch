@@ -3,9 +3,9 @@
     border: 1px solid black;
 }
 
-.gridBlocks:hover {
+/* .gridBlocks:hover {
     background-color: yellow;
-}
+} */
 
 #mainContainer {
     display: grid;

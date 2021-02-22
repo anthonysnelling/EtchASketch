@@ -1,5 +1,6 @@
 const resetButton = document.querySelector("#resetButton");
 const mainContainer = document.querySelector("#mainContainer");
+const gridBlocks = document.querySelector(".gridBlocks");
 let gridVal = 16 ** 2;
 
 resetButton.addEventListener("click", reset);
@@ -11,6 +12,7 @@ function setGrid(gridSize) {
   for (let i = 0; i < gridVal; i++) {
     let divElem = document.createElement("div");
     divElem.classList.add("gridBlocks");
+    divElem.addEventListener("mouseover", colorGrid);
     mainContainer.appendChild(divElem);
   }
 }
@@ -37,6 +39,6 @@ function resize() {
 }
 
 // TODO: function that changes background color of div when you hover over it
-// function colorGrid() {
-//   let x = document.getElementsByClassName("gridBlocks");
-// }
+function colorGrid(e) {
+  e.target.style.backgroundColor = "black";
+}
